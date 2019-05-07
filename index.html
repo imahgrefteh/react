@@ -1,53 +1,40 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title> React Project</title>
+  <head>
+    <title>React Project</title>
     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        #heading {
-            color: pink
-        }
+      #heading {
+        color: pink;
+      }
 
-        .heading {
-            color: orange
-        }
+      .heading {
+        color: orange;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="root"></div>
     <script type="text/babel">
+      
+      const lakeList = [{id: 1, name: "Echo Lake",     trailhead:"echo lake"}, 
+                        {id: 2, name: "Maud Lake",     trailhead:"wrights lake"},
+                        {id: 3, name: "Cascade Lake",  trailhead:" bayview"}];
 
-                  const Lake = ({name}) => <h1>{name}</h1>;
-
-       class App extends React.Component {
-           state = {
-               loggedIn:false
-           }
-           logIn = () => this.setState( (state, props) =>{return true})
-           render() {
-               return (
-                <div> 
-                    <button onClick={this.logIn}>Log In</button>
-                    <div>The user is {this.state.loggedIn ? "Logged in" :"not logged in" }</div>
-                    <Lake name="Lake Tahoe"/>
-                    <Lake name="Angora Lake"/>
-                    <Lake name="Shirley Lake"/>
-                    <Lake name="Cathedral Lake"/>
-                </div>
-               )
-           }
-       } 
-
-        ReactDOM.render(
-            <App />,
-            document.getElementById("root")
+      const App = ({lakes}) => ( 
+      
+        <ul> 
+                {lakes.map((lake) => <li key={lake.id}> {lake.name} Trailhead: {lake.trailhead}</li>)} 
+        </ul>
         );
+      ReactDOM.render(
+            <App lakes={lakeList}/>,
+            document.getElementById("root")
+       );
     </script>
-</body>
-
+  </body>
 </html>
